@@ -171,5 +171,41 @@ CloudWatch Dashboard con:
 - RDS MySQL → métricas finales
 
 ## Reproducibilidad
+Para repoducir los datos tendrimos que irnos a la ec2 de la aplicacion web y desde la carpeta SBD/Tema 4 ejecutar los scripts para generar los datos de la empresa, simulacion de clicks y trafico
+``` 
+  python3 generators/generate_business_data.py \
+  --student-id 10 \
+  --seed 123 \
+  --days 7 \
+  --n-events 120 \
+  --n-campaigns 12 \
+  --n-transactions 20000 \
+  --error-rate 0.05 \
+  --orphan-rate 0.02 \
+  --out-dir ./output_business \
+  --frontend-data-dir ./webapp/frontend/data
+  ```
+
+```
+    python3 simulators/replay_clickstream.py \
+    --student-id 10 \
+    --days 7 \
+    --n-events 200000 \
+    --events-json ./webapp/frontend/data/events.json \
+    --campaigns-csv ./output_business/campaigns.csv \
+    --out /var/log/aurora/aurora_clickstream.jsonl \
+    --append
+```
+```
+    python3 simulators/traffic_driver.py \
+    --base-url http://<PUBLIC_IP> \
+    --student-id 10 \
+    --events-json ./webapp/frontend/data/events.json \
+    --campaigns-csv ./output_business/campaigns.csv \
+    --sessions 300 \
+    --max-actions 8 \
+    --sleep-ms 80
+```   
+Ahora podremos ejecutar los jobs de spark en el nodo submit.
 
 ## Estimacion de costes
