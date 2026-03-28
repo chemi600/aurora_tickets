@@ -109,6 +109,7 @@ Estructura:
   - Join entre datasets
 - Salida: curated/ (Parquet particionado)
 
+<img src="https://github.com/chemi600/aurora_tickets/blob/main/images/diagramas/job1.drawio.png?raw=true"/>
 
 ## Job 2
 - Entrada: curated/
@@ -118,6 +119,8 @@ Estructura:
 - Salidas:
     - analytics/ en S3
     - Tablas finales en RDS MySQ
+
+<img src="https://github.com/chemi600/aurora_tickets/blob/main/images/diagramas/job2.drawio.png?raw=true"/>
 
 ## Productos analíticos
 
@@ -151,6 +154,8 @@ CloudWatch Dashboard con:
 - Errores/latencia
 - Anomalías
 
+<img src="https://github.com/chemi600/aurora_tickets/blob/main/images/Cloudwatch_dashboard.png?raw=true"/>
+
 # Evaluacion
 
 ## Limitaciones
@@ -169,6 +174,8 @@ CloudWatch Dashboard con:
 - S3 → Data Lake
 - CloudWatch → logs + dashboard
 - RDS MySQL → métricas finales
+
+<img src="https://github.com/chemi600/aurora_tickets/blob/main/images/diagramas/aws_arquitectura_diagrama.drawio.png?raw=true"/>
 
 ## Reproducibilidad
 Para repoducir los datos tendrimos que irnos a la ec2 de la aplicacion web y desde la carpeta SBD/Tema 4 ejecutar los scripts para generar los datos de la empresa, simulacion de clicks y trafico
@@ -209,3 +216,4 @@ Para repoducir los datos tendrimos que irnos a la ec2 de la aplicacion web y des
 Ahora podremos ejecutar los jobs de spark en el nodo submit.
 
 ## Estimacion de costes
+<img src="https://github.com/chemi600/aurora_tickets/blob/main/images/presupuesto.png?raw=true"/>
